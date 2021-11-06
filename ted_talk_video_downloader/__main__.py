@@ -1,6 +1,6 @@
 import argparse  # pragma: no cover
-
 from .downloader import TED_Downloader  # pragma: no cover
+
 
 def main() -> None:  # pragma: no cover
     """
@@ -23,6 +23,7 @@ def main() -> None:  # pragma: no cover
     ted_downloader = TED_Downloader()
     ted_downloader.process_mp4_filename(args.url)
     ted_downloader.download_and_save()
+
 
 if __name__ == "__main__":  # pragma: no cover
     main()
