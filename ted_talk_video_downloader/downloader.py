@@ -4,6 +4,7 @@ ted_talk_video_downloader base module.
 This is the principal module of the ted_talk_video_downloader project.
 here you put your main classes and objects.
 """
+import os
 import re
 import requests
 from bs4 import BeautifulSoup
@@ -75,13 +76,17 @@ class TED_Downloader:
         if not self.mp4_url:
             print("Error! No video url specified!")
             return False
+        if not os.path.isdir(output_path):
+            print("Error! Output path invalid!")
+            return False
 
         print(f"Downloading video from :{self.mp4_url}")
 
         end_filename = len(self.mp4_url.split("/")) - 1
-        file_name = self.mp4_url.split("/")[end_filename].split('?')[0]
+        # file_name = self.mp4_url.split("/")[end_filename].split('?')[0]
 
-        print(f"Storing video as: {file_name}")
+        print(f"Storing video as: {video_name}")
+        file_name = f"{video_name}.mp4"
 
         try:
             video_response: requests.Response = requests.get(self.mp4_url)
@@ -93,7 +98,8 @@ class TED_Downloader:
             print("Error! Cannot download the video!")
             return False
 
-        with open(file_name, 'wb') as video_file:
+        out_filename = os.path.join(output_path, file_name)
+        with open(out_filename, 'wb') as video_file:
             video_file.write(video_response.content)
 
         return True
