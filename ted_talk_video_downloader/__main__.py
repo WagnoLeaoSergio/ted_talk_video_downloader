@@ -26,7 +26,7 @@ def main() -> None:  # pragma: no cover
         required=False
     )
     parser.add_argument(
-        "-o",
+        "--output",
         type=str,
         help="Path where the video will be saved.",
         default="~/Downloads",
