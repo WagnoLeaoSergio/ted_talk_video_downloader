@@ -16,7 +16,7 @@ def main() -> None:  # pragma: no cover
     parser.add_argument(
         "url",
         type=str,
-        help="The URL for the video.",
+        help="The URL for the video's website.",
     )
     parser.add_argument(
         "--name",
@@ -30,6 +30,14 @@ def main() -> None:  # pragma: no cover
         type=str,
         help="Path where the video will be saved.",
         default="~/Downloads",
+        required=False
+    )
+    parser.add_argument(
+        "--quality",
+        type=str,
+        help="Set the video's quality (if available)",
+        default="240p",
+        choices=["240p", "320p", "480p"],
         required=False
     )
     args = parser.parse_args()
