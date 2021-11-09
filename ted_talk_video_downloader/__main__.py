@@ -18,6 +18,20 @@ def main() -> None:  # pragma: no cover
         type=str,
         help="The URL for the video.",
     )
+    parser.add_argument(
+        "--name",
+        type=str,
+        help="Name of the video when saved.",
+        default="new_video",
+        required=False
+    )
+    parser.add_argument(
+        "-o",
+        type=str,
+        help="Path where the video will be saved.",
+        default="~/Downloads",
+        required=False
+    )
     args = parser.parse_args()
 
     ted_downloader = TED_Downloader()
