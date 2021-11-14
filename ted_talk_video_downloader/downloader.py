@@ -44,6 +44,7 @@ class TED_Downloader:
         response: requests.Response = requests.get(url)
         if not response.ok:
             error_message = "Error! Cannot access page!"
+            print(error_message)
             return error_message
 
         soup = BeautifulSoup(response.content, features="html.parser")
@@ -58,8 +59,8 @@ class TED_Downloader:
 
     def download_and_save(
             self,
-            video_name: str = None,
-            output_path: str = None
+            video_name: str,
+            output_path: str
     ) -> bool:
         """
         Downloads and saves the video in the specified path.
@@ -76,14 +77,11 @@ class TED_Downloader:
         if not self.mp4_url:
             print("Error! No video url specified!")
             return False
-        if not os.path.isdir(output_path):
+        if not os.path.exists(output_path):
             print("Error! Output path invalid!")
             return False
 
         print(f"Downloading video from :{self.mp4_url}")
-
-        end_filename = len(self.mp4_url.split("/")) - 1
-        # file_name = self.mp4_url.split("/")[end_filename].split('?')[0]
 
         print(f"Storing video as: {video_name}")
         file_name = f"{video_name}.mp4"
@@ -98,7 +96,9 @@ class TED_Downloader:
             print("Error! Cannot download the video!")
             return False
 
-        out_filename = os.path.join(output_path, file_name)
+        out_filename: str = os.path.join(output_path, file_name)
+        print(f"Video saved on {out_filename}")
+
         with open(out_filename, 'wb') as video_file:
             video_file.write(video_response.content)
 
