@@ -25,11 +25,15 @@ def test_process_mp4_filename_invalid_url(Downloader_Instance):
 
 
 def test_download_and_save_no_filename(Downloader_Instance):
-    result = Downloader_Instance.download_and_save()
+    result = Downloader_Instance.download_and_save("", "");
     assert not result
 
 def test_download_and_save_bad_response(Downloader_Instance):
-    valid_url = "https://www.ted.com/talks/bozoma_saint_john_the_creative_power_of_your_intuition/up-next"
-    Downloader_Instance.mp4_url = "https://awdawfwaf.com"
-    result = Downloader_Instance.download_and_save()
+    invalid_url = "https://awdawfwaf.com"
+    downloads_folder = "~/Downloads"
+    Downloader_Instance.process_mp4_filename(invalid_url)
+    result = Downloader_Instance.download_and_save(
+            "video_test",
+            downloads_folder
+    )
     assert not result
