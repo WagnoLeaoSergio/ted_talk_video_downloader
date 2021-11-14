@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+1.0.1 (2021-11-14)
+------------------
+- Release: version 1.0.0 🚀 [WagnoLeaoSergio]
+
+
 1.0.0 (2021-11-14)
 ------------------
 - Main workflow updated. [WagnoLeaoSergio]
