@@ -19,17 +19,16 @@ def main() -> None:  # pragma: no cover
         help="The URL for the video's website.",
     )
     parser.add_argument(
+        "output",
+        type=str,
+        help="Path where the video will be saved.",
+        default="",
+    )
+    parser.add_argument(
         "--name",
         type=str,
         help="Name of the video when saved.",
         default="new_video",
-        required=False
-    )
-    parser.add_argument(
-        "--output",
-        type=str,
-        help="Path where the video will be saved.",
-        default="~/Downloads",
         required=False
     )
     parser.add_argument(
