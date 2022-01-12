@@ -22,9 +22,9 @@ ted_downloader.download_and_save("new_video", "~/Downloads")
 ```
 
 ```bash
-$ python -m ted_talk_video_downloader
+$ python -m ted_talk_video_downloader [URL] [OUTPUT_PATH]
 #or
-$ ted_talk_video_downloader
+$ ted_talk_video_downloader [URL] [OUTPUT_PATH]
 ```
 
 ## Development
