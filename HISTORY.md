@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+1.0.2 (2022-01-12)
+------------------
+- README updated. [WagnoLeaoSergio]
+- Output argument is not optional anymore. [WagnoLeaoSergio]
+- Logging module used to print error. [WagnoLeaoSergio]
+- Release: version 1.0.1 🚀 [WagnoLeaoSergio]
+
+
 1.0.1 (2021-11-14)
 ------------------
 - Release: version 1.0.0 🚀 [WagnoLeaoSergio]
