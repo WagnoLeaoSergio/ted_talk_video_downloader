@@ -7,6 +7,7 @@ here you put your main classes and objects.
 import os
 import re
 import requests
+import logging
 from bs4 import BeautifulSoup
 from typing import Any
 
@@ -23,6 +24,7 @@ class TED_Downloader:
     def __init__(self, output_path: str = None) -> None:
         self.output_path = output_path
         self.mp4_url: str = ""
+        self.__log = logging.getLogger(__name__)
 
     def process_mp4_filename(self, url: str) -> str:
         """
@@ -37,14 +39,14 @@ class TED_Downloader:
         A string containing the file name of the video.
         """
         if 'https://www.ted.com/talks' not in url:
-            error_message = "Error! This website is not from TED Talks!"
-            print(error_message)
+            error_message = "This website is not from TED Talks!"
+            self.__log.error(error_message)
             return error_message
 
         response: requests.Response = requests.get(url)
         if not response.ok:
-            error_message = "Error! Cannot access page!"
-            print(error_message)
+            error_message = "Cannot access page!"
+            self.__log.error(error_message)
             return error_message
 
         soup = BeautifulSoup(response.content, features="html.parser")
@@ -75,13 +77,13 @@ class TED_Downloader:
         in the object's parameters.
         """
         if not self.mp4_url:
-            print("Error! No video url specified!")
+            self.__log.error("No video URL specified!")
             return False
         if not os.path.exists(output_path):
-            print("Error! Output path invalid!")
+            self.__log.error(f"Output path '{output_path}' invalid")
             return False
 
-        print(f"Downloading video from :{self.mp4_url}")
+        print(f"Downloading video from: {self.mp4_url}")
 
         print(f"Storing video as: {video_name}")
         file_name = f"{video_name}.mp4"
@@ -93,7 +95,7 @@ class TED_Downloader:
             requests.exceptions.InvalidURL,
             requests.exceptions.ConnectionError
         ):
-            print("Error! Cannot download the video!")
+            self.__log.error("Cannot download the video!")
             return False
 
         out_filename: str = os.path.join(output_path, file_name)
